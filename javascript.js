@@ -50,67 +50,69 @@ function getHumanChoice() {
 
 
 
-// Variables to track human and computer scores
 
-let humanScore = 0
-let computerScore = 0
+//function playGame() {
 
 
 
+    // Variables to track human and computer scores
 
-// Function to determine who wins the round based on human and computer choices
-// and increment the score by 1 for whoever won the round
-
-function playRound(humanChoice, computerChoice) {
+    let humanScore = 0
+    let computerScore = 0
 
 
-    
-    if ((humanChoice === "Rock" && computerChoice === "Rock")
-        ||(humanChoice === "Paper" && computerChoice === "Paper")
-        ||(humanChoice === "Scissors" && computerChoice === "Scissors")) {
-        return "Sorry, you both chose the same. It is a tie, no points awarded."
+
+    // Function to determine who wins the round based on human and computer choices
+    // and increment the score by 1 for whoever won the round
+
+    function playRound() {
+
+        let humanChoice = getHumanChoice();
+        let computerChoice = getComputerChoice();
+        
+        if ((humanChoice === "Rock" && computerChoice === "Rock")
+            ||(humanChoice === "Paper" && computerChoice === "Paper")
+            ||(humanChoice === "Scissors" && computerChoice === "Scissors")) {
+            return "Sorry, you both chose " + humanChoice + ". It is a tie, no points awarded."
+        }
+        else if (humanChoice === "Rock" && computerChoice === "Paper") {
+            computerScore = computerScore + 1;
+            return "You lose the round. Paper beats Rock. The computer gets one point."
+        }
+        else if (humanChoice === "Rock" && computerChoice === "Scissors") {
+            humanScore = humanScore + 1;
+            return "You win the round! Rock beats Scissors. You get a point!"
+        }
+        else if (humanChoice === "Paper" && computerChoice === "Scissors") {
+            computerScore = computerScore + 1;
+            return "You lose the round. Scissors beats Paper. The computer gets one point."
+        }
+        else if (humanChoice === "Paper" && computerChoice === "Rock") {
+            humanScore = humanScore + 1;
+            return "You win the round! Paper beats Rock. You get a point!"
+        }
+        else if (humanChoice === "Scissors" && computerChoice === "Rock") {
+            computerScore = computerScore + 1;
+            return "You lose the round. Rock beats Scissors. The computer gets one point."
+        }
+        else if (humanChoice === "Scissors" && computerChoice === "Paper") {
+            humanScore = humanScore + 1;
+            return "You win the round! Scissors beats Paper. You get a point!"
+        }
+        else if (humanChoice){
+            return "Please enter a valid choice."
+        }
+        else if (humanChoice === null) {
+            return "Try again."
+        }
     }
-    else if (humanChoice === "Rock" && computerChoice === "Paper") {
-        computerScore = computerScore + 1;
-        return "You Lose. Paper beats Rock. The computer gets one point."
-    }
-    else if (humanChoice === "Rock" && computerChoice === "Scissors") {
-        humanScore = humanScore + 1;
-        return "You Win! Rock beats Scissors. You get a point!"
-    }
-    else if (humanChoice === "Paper" && computerChoice === "Scissors") {
-        computerScore = computerScore + 1;
-        return "You Lose. Scissors beats Paper. The computer gets one point."
-    }
-    else if (humanChoice === "Paper" && computerChoice === "Rock") {
-        humanScore = humanScore + 1;
-        return "You Win! Paper beats Rock. You get a point!"
-    }
-    else if (humanChoice === "Scissors" && computerChoice === "Rock") {
-        computerScore = computerScore + 1;
-        return "You Lose. Rock beats Scissors. The computer gets one point."
-    }
-    else if (humanChoice === "Scissors" && computerChoice === "Paper") {
-        humanScore = humanScore + 1;
-        return "You win! Scissors beats Paper. You get a point!"
-    }
-    else if (humanChoice){
-        return "Please enter a valid choice."
-    }
-    else if (humanChoice === null) {
-        return "Try again."
-    }
 
 
-}
 
 
-const humanSelection = getHumanChoice();
-const computerSelection = getComputerChoice();
+//const humanSelection = getHumanChoice();
+//const computerSelection = getComputerChoice();
 
-console.log(humanSelection);
-console.log(computerSelection);
-console.log(playRound(humanSelection, computerSelection));
 
+console.log(playRound());
 console.log(humanScore, computerScore);
-
