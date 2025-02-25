@@ -20,8 +20,6 @@ function getComputerChoice() {
 
 
 
-console.log(getComputerChoice());
-
 
 // Function to allow the human player to make a choice
 // in the Rock, Paper, Scissors game
@@ -46,12 +44,60 @@ function getHumanChoice() {
         return "Paper"
     }
     else {
-        return "Please enter a valid choice"
+        return "Please enter a valid choice."
     }
 }
 
 
-console.log(getHumanChoice());
+
+// Variables to track human and computer scores
+
+let humanScore = 0
+let computerScore = 0
 
 
+
+
+// Function to determine who wins the round based on human and computer choices
+
+
+function playRound(humanChoice, computerChoice) {
+    
+    if ((humanChoice === "Rock" && computerChoice === "Rock")
+        ||(humanChoice === "Paper" && computerChoice === "Paper")
+        ||(humanChoice === "Scissors" && computerChoice === "Scissors")) {
+        return "Sorry, you both chose the same. It is a tie, no points awarded."
+    }
+    else if (humanChoice === "Rock" && computerChoice === "Paper") {
+        return "You Lose. Paper beats Rock. The computer gets one point."
+    }
+    else if (humanChoice === "Rock" && computerChoice === "Scissors") {
+        return "You Win! Rock beats Scissors. You get a point!"
+    }
+    else if (humanChoice === "Paper" && computerChoice === "Scissors") {
+        return "You Lose. Scissors beats Paper. The computer gets one point."
+    }
+    else if (humanChoice === "Paper" && computerChoice === "Rock") {
+        return "You Win! Paper beats Rock. You get a point!"
+    }
+    else if (humanChoice === "Scissors" && computerChoice === "Rock") {
+        return "You Lose. Rock beats Scissors. The computer gets one point."
+    }
+    else if (humanChoice === "Scissors" && computerChoice === "Paper") {
+        return "You win! Scissors beats Paper. You get a point!"
+    }
+    else {
+        return "Please enter a valid choice."
+    }
+
+}
+
+
+const humanSelection = getHumanChoice();
+const computerSelection = getComputerChoice();
+
+console.log(humanSelection);
+console.log(computerSelection);
+console.log(playRound(humanSelection, computerSelection));
+console.log(humanScore, computerScore);
 
