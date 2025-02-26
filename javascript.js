@@ -26,7 +26,7 @@ function getComputerChoice() {
 
 
 function getHumanChoice() {
-    let humChoice = prompt("Choose one: Rock, Paper, or Scissors")
+    let humChoice = prompt("Choose one: Rock, Paper, or Scissors.\nFirst to 3 points wins.")
 
     if (humChoice === null) {
         return "Try again"
@@ -48,11 +48,10 @@ function getHumanChoice() {
     }
 }
 
+// Function to play the game, which is playing rounds of rock, paper, scissors until
+// either player reaches 3 points
 
-
-
-//function playGame() {
-
+function playGame() {
 
 
     // Variables to track human and computer scores
@@ -60,59 +59,112 @@ function getHumanChoice() {
     let humanScore = 0
     let computerScore = 0
 
+    //function to determine if the game needs to be replayed or if it is over
 
-
+    function triggerReplay(){
+    
     // Function to determine who wins the round based on human and computer choices
     // and increment the score by 1 for whoever won the round
 
-    function playRound() {
+        function playRound() {
 
-        let humanChoice = getHumanChoice();
-        let computerChoice = getComputerChoice();
-        
-        if ((humanChoice === "Rock" && computerChoice === "Rock")
-            ||(humanChoice === "Paper" && computerChoice === "Paper")
-            ||(humanChoice === "Scissors" && computerChoice === "Scissors")) {
-            return "Sorry, you both chose " + humanChoice + ". It is a tie, no points awarded."
+            let humanChoice = getHumanChoice();
+            let computerChoice = getComputerChoice();
+            
+            if ((humanChoice === "Rock" && computerChoice === "Rock")
+                ||(humanChoice === "Paper" && computerChoice === "Paper")
+                ||(humanChoice === "Scissors" && computerChoice === "Scissors")) {
+                return "Sorry, you both chose " + humanChoice + ". It is a tie, no points awarded."
+            }
+            else if (humanChoice === "Rock" && computerChoice === "Paper") {
+                computerScore = computerScore + 1;
+                return "You lose the round. Paper beats Rock. The computer gets one point."
+            }
+            else if (humanChoice === "Rock" && computerChoice === "Scissors") {
+                humanScore = humanScore + 1;
+                return "You win the round! Rock beats Scissors. You get a point!"
+            }
+            else if (humanChoice === "Paper" && computerChoice === "Scissors") {
+                computerScore = computerScore + 1;
+                return "You lose the round. Scissors beats Paper. The computer gets one point."
+            }
+            else if (humanChoice === "Paper" && computerChoice === "Rock") {
+                humanScore = humanScore + 1;
+                return "You win the round! Paper beats Rock. You get a point!"
+            }
+            else if (humanChoice === "Scissors" && computerChoice === "Rock") {
+                computerScore = computerScore + 1;
+                return "You lose the round. Rock beats Scissors. The computer gets one point."
+            }
+            else if (humanChoice === "Scissors" && computerChoice === "Paper") {
+                humanScore = humanScore + 1;
+                return "You win the round! Scissors beats Paper. You get a point!"
+            }
+            else if (humanChoice){
+                return "Please enter a valid choice."
+            }
+            else if (humanChoice === null) {
+                return "Try again."
+            }
         }
-        else if (humanChoice === "Rock" && computerChoice === "Paper") {
-            computerScore = computerScore + 1;
-            return "You lose the round. Paper beats Rock. The computer gets one point."
+       
+
+
+    // Display the message declaring outcome of the round and track scores    
+
+    console.log(playRound());
+    console.log("Player Score: " + humanScore, "Computer Score: " + computerScore)
+
+    // Function to determine if either score is at 3 yet, is triggered, and placed
+    // in a variable
+    
+    function playAgain() {
+
+        if (humanScore < 3 && computerScore < 3) {
+            return "Yes"
         }
-        else if (humanChoice === "Rock" && computerChoice === "Scissors") {
-            humanScore = humanScore + 1;
-            return "You win the round! Rock beats Scissors. You get a point!"
-        }
-        else if (humanChoice === "Paper" && computerChoice === "Scissors") {
-            computerScore = computerScore + 1;
-            return "You lose the round. Scissors beats Paper. The computer gets one point."
-        }
-        else if (humanChoice === "Paper" && computerChoice === "Rock") {
-            humanScore = humanScore + 1;
-            return "You win the round! Paper beats Rock. You get a point!"
-        }
-        else if (humanChoice === "Scissors" && computerChoice === "Rock") {
-            computerScore = computerScore + 1;
-            return "You lose the round. Rock beats Scissors. The computer gets one point."
-        }
-        else if (humanChoice === "Scissors" && computerChoice === "Paper") {
-            humanScore = humanScore + 1;
-            return "You win the round! Scissors beats Paper. You get a point!"
-        }
-        else if (humanChoice){
-            return "Please enter a valid choice."
-        }
-        else if (humanChoice === null) {
-            return "Try again."
+        else if (humanScore === 3 || computerScore === 3) {
+            return "No"
         }
     }
 
+    playAgain();
 
+    let replay = playAgain();
 
+    // Based on above variable, the below will trigger the game again or end
 
-//const humanSelection = getHumanChoice();
-//const computerSelection = getComputerChoice();
+    
+    if (replay === "Yes") {
+       triggerReplay();
+    }
+    else if (replay === "No") {
+          "Game Over"
+    }
+    
 
+    }
 
-console.log(playRound());
-console.log(humanScore, computerScore);
+    // Enacts the above code to run through the round and determines if it needs
+    // to run through it again or not
+
+    triggerReplay();
+
+    // Once a score has reached 3, one of the below messages will be displayed
+    // based on who won
+    
+    if (humanScore > computerScore) {
+        return "Congratulations, you got to 3 points first. You win!"
+    }
+    else if (computerScore > humanScore) {
+        return "Better luck next time.  The computer got to 3 points first so you lost.\nRefresh to try again."
+    }
+    
+
+       
+
+}
+
+// Calls the playGame function and displays the winner once it is over
+
+console.log(playGame());
