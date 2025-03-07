@@ -26,7 +26,7 @@ function getComputerChoice() {
 
 
 function getHumanChoice() {
-    let humChoice = prompt("Choose one: Rock, Paper, or Scissors.\nFirst to 3 points wins.")
+    let humChoice = prompt("Choose one: Rock, Paper, or Scissors.\nFirst to 5 points wins.")
 
     if (humChoice === null) {
         return "Try again"
@@ -49,7 +49,7 @@ function getHumanChoice() {
 }
 
 // Function to play the game, which is playing rounds of rock, paper, scissors until
-// either player reaches 3 points
+// either player reaches 5 points
 
 function playGame() {
 
@@ -120,10 +120,10 @@ function playGame() {
     
     function playAgain() {
 
-        if (humanScore < 3 && computerScore < 3) {
+        if (humanScore < 5 && computerScore < 5) {
             return "Yes"
         }
-        else if (humanScore === 3 || computerScore === 3) {
+        else if (humanScore === 5 || computerScore === 5) {
             return "No"
         }
     }
@@ -150,14 +150,14 @@ function playGame() {
 
     triggerReplay();
 
-    // Once a score has reached 3, one of the below messages will be displayed
+    // Once a score has reached 5, one of the below messages will be displayed
     // based on who won
     
     if (humanScore > computerScore) {
-        return "Congratulations, you got to 3 points first. You win!"
+        return "Congratulations, you got to 5 points first. You win!"
     }
     else if (computerScore > humanScore) {
-        return "Better luck next time.  The computer got to 3 points first so you lost.\nRefresh to try again."
+        return "Better luck next time.  The computer got to 5 points first so you lost.\nRefresh to try again."
     }
     
 
