@@ -53,15 +53,22 @@ function getComputerChoice() {
 // const scissors = document.querySelector("#scissors");
 
 const buttons = document.querySelectorAll("button");
+const resultText = document.querySelector("#results");
+const score = document.querySelector("#score");
+const winnerText = document.querySelector("#winner-text");
+const playerPick = document.querySelector("#player-pick");
+const computerPick = document.querySelector("#computer-pick");
 
 let playerSelection
+let computerSelection = getComputerChoice();
 
 buttons.forEach((button) => {
     button.addEventListener('click', () => {
         playerSelection = button.textContent;
-        console.log(playerSelection);
-        console.log(playRound(playerSelection));
-        console.log(humanScore, computerScore);
+        playerPick.textContent = "Your choice: " + playerSelection;
+        computerPick.textContent = "Computer's choice: " + computerSelection;
+        resultText.textContent = playRound(playerSelection);
+        score.textContent = "Player Score: " + humanScore + " \nComputer Score: " + computerScore;
     });
 });
 
@@ -105,12 +112,12 @@ buttons.forEach((button) => {
 
 
     
-        
+    
     
         function playRound(playerChoice) {
 
             let humanChoice = playerChoice;
-            let computerChoice = getComputerChoice();
+            let computerChoice = computerSelection;
             
             if ((humanChoice === "Rock" && computerChoice === "Rock")
                 ||(humanChoice === "Paper" && computerChoice === "Paper")
@@ -159,7 +166,7 @@ buttons.forEach((button) => {
 
     // Display the message declaring outcome of the round and track scores    
 
-    //console.log(playRound());
+    console.log(playRound());
     console.log("Player Score: " + humanScore, "Computer Score: " + computerScore)
 
     // Function to determine if either score is at 3 yet, is triggered, and placed
